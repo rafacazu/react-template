@@ -8,9 +8,13 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
+    "mockapi": "json-server --watch ./api/db.json --port 3004",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "json-server": "^0.12.2"
   }
 }

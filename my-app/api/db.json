@@ -1,0 +1,8 @@
+{
+    "games":[
+        {"title":"Metal Gear V", "year":"2015", "console":"ps4"},
+        {"title":"Zelda", "year":"2017", "console":"Nintendo Switch"},
+        {"title":"Resident Evil 7", "year":"2017", "console":"ps4"},
+        {"title":"Star Wars", "year":"2018", "console":"ps4"}
+    ]
+}
