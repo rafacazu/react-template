@@ -6,5 +6,6 @@ Template to start a React application;
 - Ability to add, edit and delete item;
 - Display details of item when selected;
 - Add unit test for each feature;
+- Handling errors;
 
 
