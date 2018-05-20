@@ -1,8 +1,52 @@
 {
-    "games":[
-        {"title":"Metal Gear V", "year":"2015", "console":"ps4"},
-        {"title":"Zelda", "year":"2017", "console":"Nintendo Switch"},
-        {"title":"Resident Evil 7", "year":"2017", "console":"ps4"},
-        {"title":"Star Wars", "year":"2018", "console":"ps4"}
-    ]
+  "games": [
+    {
+      "id": 1,
+      "title": "Metal Gear V",
+      "year": "2015",
+      "console": "ps4"
+    },
+    {
+      "id": 2,
+      "title": "Zelda",
+      "year": "2017",
+      "console": "Nintendo Switch"
+    },
+    {
+      "id": 3,
+      "title": "Resident Evil 7",
+      "year": "2017",
+      "console": "ps4"
+    },
+    {
+      "id": 4,
+      "title": "Star Wars",
+      "year": "2018",
+      "console": "ps4"
+    },
+    {
+      "title": "doom",
+      "year": "2017",
+      "console": "ps4",
+      "id": 5
+    },
+    {
+      "title": "doom",
+      "year": "2017",
+      "console": "ps4",
+      "id": 6
+    },
+    {
+      "title": "doom",
+      "year": "2017",
+      "console": "ps4",
+      "id": 7
+    },
+    {
+      "title": "doom",
+      "year": "2017",
+      "console": "ps4",
+      "id": 8
+    }
+  ]
 }

@@ -19,16 +19,22 @@ export class List extends Component{
             this.setState({games: json});
         });
     }
-    
-    renderGames(){
-        return this.state.games.map((games,index) => (<div key={index}>{games.title}</div>))
+
+    renderList(){
+        return this.state.games.map((games,index) => (
+            <Item key={index} title={games.title} year={games.year} />
+        ))
     }
 
 
     render(){
         return(
             <div>
-            {this.renderGames()}
+                {this.state.games.length > 0 &&
+                    <ul>
+                        {this.renderList()}
+                    </ul>
+                }
             </div>
         )
     }
