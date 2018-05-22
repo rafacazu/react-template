@@ -25,28 +25,10 @@
       "console": "ps4"
     },
     {
-      "title": "doom",
-      "year": "2017",
-      "console": "ps4",
+      "title": "test",
+      "year": "9999",
+      "console": "3do",
       "id": 5
-    },
-    {
-      "title": "doom",
-      "year": "2017",
-      "console": "ps4",
-      "id": 6
-    },
-    {
-      "title": "doom",
-      "year": "2017",
-      "console": "ps4",
-      "id": 7
-    },
-    {
-      "title": "doom",
-      "year": "2017",
-      "console": "ps4",
-      "id": 8
     }
   ]
 }

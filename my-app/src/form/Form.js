@@ -3,20 +3,27 @@ import React from 'react';
 
 class Form extends React.Component{
 
-    constructor(){
+    constructor(props){
         super();
         this.state = {
-            title: null,
-            year: null,
-            console: null
+            title: "",
+            year: "",
+            console: ""
         }
-
         this.submitForm = this.submitForm.bind(this);
+        this.handleIputChange = this.handleInputChange.bind(this);
+    }
+
+
+    handleInputChange(event){
+        const newState = {};
+        newState[event.target.name] = event.target.value;
+        this.setState(newState);
     }
 
     submitForm(e){
         e.preventDefault()
-        const content = {"title":"doom", "year": "2017", "console": "ps4"}
+        const content = this.state;
 
         fetch('http://localhost:3004/games?title="doom"',{
             method: 'post',
@@ -39,16 +46,15 @@ class Form extends React.Component{
 
 
     render(){
-        console.log('...submiting form', this.state.title);
+        console.log('state:', this.state.title, this.state.year, this.state.console );
         return(
             <div>
                 <form>
-                    <input type="text" name="title" placeholder="Title" />
-                    <input type="text" name="year" placeholder="Year" />
-                    <input type="text" name="console" placeholder="Console" />
+                    <input type="text" name="title" placeholder="Title" value={this.state.title} onChange={this.handleIputChange}/>
+                    <input type="text" name="year" placeholder="Year" value={this.state.year} onChange={this.handleIputChange} />
+                    <input type="text" name="console" placeholder="Console" value={this.state.console} onChange={this.handleIputChange}/>
                     <input type="submit" value="Add" onClick={this.submitForm} /> 
                 </form>
-                <div>{this.state.title} {this.state.year} {this.state.console} has been added to the list</div>
             </div>
         )
         
