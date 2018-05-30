@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Item} from '../item/Item';
+import {Item} from './Item';
 
-export class List extends Component{
+export class ItemList extends Component{
 
     constructor(){
         super();

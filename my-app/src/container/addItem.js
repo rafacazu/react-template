@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Form from './../components/Form';
+import {addItem} from '../actions';
+import {connect} from 'react-redux';
 
 
-class Form extends React.Component{
+
+class AddItem extends Component {
 
     constructor(props){
         super();
@@ -10,11 +14,12 @@ class Form extends React.Component{
             year: "",
             console: ""
         }
+
         this.submitForm = this.submitForm.bind(this);
-        this.handleIputChange = this.handleInputChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-
+    /*logic to save the new item*/
     handleInputChange(event){
         const newState = {};
         newState[event.target.name] = event.target.value;
@@ -40,25 +45,19 @@ class Form extends React.Component{
         });
 
         // this is saving the data in db.json - Next step is refreshing all the components once the data is saved. For that, I'll add the redux;
-
     }
-
-
 
     render(){
-        console.log('state:', this.state.title, this.state.year, this.state.console );
         return(
-            <div>
-                <form>
-                    <input type="text" name="title" placeholder="Title" value={this.state.title} onChange={this.handleIputChange}/>
-                    <input type="text" name="year" placeholder="Year" value={this.state.year} onChange={this.handleIputChange} />
-                    <input type="text" name="console" placeholder="Console" value={this.state.console} onChange={this.handleIputChange}/>
-                    <input type="submit" value="Add" onClick={this.submitForm} /> 
-                </form>
-            </div>
+            <Form onChange={this.handleInputChange} onClick={this.submitForm} />
         )
-        
     }
+    
 }
 
-export default Form;
+
+
+
+export default connect()(AddItem)
+
+
