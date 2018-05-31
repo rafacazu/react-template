@@ -9,7 +9,7 @@ export class Item extends React.Component{
 
     render(){
         return(
-            <li><div>{this.props.title} {this.props.year}</div></li>
+            <li><div>{this.props.title} - {this.props.year} - {this.props.console}</div></li>
         )
     }
 }

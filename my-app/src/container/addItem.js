@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from './../components/Form';
 import {addItem} from '../actions';
+import {saveItem} from '../actions';
 import {connect} from 'react-redux';
 
 
@@ -28,36 +29,31 @@ class AddItem extends Component {
 
     submitForm(e){
         e.preventDefault()
-        const content = this.state;
-
-        fetch('http://localhost:3004/games?title="doom"',{
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(content)
-        })
-        .then(response => {
-            return response.json();
-        })
-        .then(json => {
-            console.log(json);
-        });
-
-        // this is saving the data in db.json - Next step is refreshing all the components once the data is saved. For that, I'll add the redux;
+        //const content = this.state;
+        this.props.dispatch(addItem(this.state.title, this.state.year, this.state.console));
     }
 
     render(){
         return(
-            <Form onChange={this.handleInputChange} onClick={this.submitForm} />
+            <Form onChange={this.handleInputChange} onClick={this.submitForm} value={this.state}/>
         )
     }
     
 }
 
 
+//state that I want to expose
+function mapStateToProps(state, ownProps){
+    return {
+        items: state.items
+    }
+}
+
+//dispatch that I want to expose 
+/*function mapDispatchToProps(dispatch){
+
+}*/
 
 
-export default connect()(AddItem)
 
-
+export default connect(mapStateToProps)(AddItem)

@@ -6,35 +6,35 @@ export class ItemList extends Component{
     constructor(){
         super();
         this.state = {
-            games: []
+            //items: []
         }
     }
 
-    componentDidMount(){
+   /* componentDidMount(){
         fetch('http://localhost:3004/games')
         .then(response => {
             return response.json();
         })
         .then(json => {
-            this.setState({games: json});
+            this.setState({items: json});
         });
     }
 
     renderList(){
-        return this.state.games.map((games,index) => (
-            <Item key={index} title={games.title} year={games.year} />
+        return this.state.items.map((items,index) => (
+            <Item key={index} title={items.title} year={items.year} console={items.console} />
         ))
-    }
+    }*/
 
 
     render(){
         return(
             <div>
-                {this.state.games.length > 0 &&
+                {/*this.state.items.length > 0 &&
                     <ul>
                         {this.renderList()}
                     </ul>
-                }
+                */}
             </div>
         )
     }
