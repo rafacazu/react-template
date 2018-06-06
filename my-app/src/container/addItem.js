@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Form from './../components/Form';
 import {addItem} from '../actions';
-import {saveItem} from '../actions';
 import {connect} from 'react-redux';
 
 

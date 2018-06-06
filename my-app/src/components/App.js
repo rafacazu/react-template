@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './Header';
-import {ItemList} from './itemList';
+import ItemList from '../container/itemList';
 import AddItem from '../container/addItem';
 
 class App extends Component {

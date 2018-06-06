@@ -25,6 +25,12 @@ const items = (state = [], action) => {
                     console: action._console
                 }
             ]
+        case 'LOAD_ITEMS':
+           debugger;
+            return action.items
+
+            
+
         default:
             return state
         
