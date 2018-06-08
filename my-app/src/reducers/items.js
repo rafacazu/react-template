@@ -2,7 +2,7 @@ const items = (state = [], action) => {
     switch (action.type){
         case 'ADD_ITEM':
 
-            var content = {title: action.title, year: action.year, console: action.console}
+            var content = {title: action.title, year: action.year, console: action._console}
 
             fetch('http://localhost:3004/games',{
                 method: 'post',
@@ -26,10 +26,7 @@ const items = (state = [], action) => {
                 }
             ]
         case 'LOAD_ITEMS':
-           debugger;
             return action.items
-
-            
 
         default:
             return state

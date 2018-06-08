@@ -12,12 +12,25 @@ class ItemList extends Component {
         }
     }
 
+    componentDidMount(){
+        
+        fetch('http://localhost:3004/games')
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            //this.setState({items: json})
+            this.props.dispatch(loadItems(json));
+        });
+    }
+
+    static getDerivedStateFromProps(props, state){
+        return { items: props.items }
+    }
+
     render(){
-       // this.props.dispatch(loadItems());
         return (
-            
             <div>
-                Item List:
                 <List items={this.state.items}/>
             </div>
         )

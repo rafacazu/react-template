@@ -5,19 +5,8 @@ export const addItem = (title, year, _console) => ({
     _console
 })
 
-export const loadItemsSuccess = (items) =>({
+
+export const loadItems = (items) => ({
     type: 'LOAD_ITEMS',
     items
 })
-
-
-export const loadItems = () => {
-
-    fetch('http://localhost:3004/games')
-    .then(response => {
-        return response.json();
-    })
-    .then(json => {
-        //loadItemsSuccess(json);
-    });
-}
