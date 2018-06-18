@@ -1,8 +1,6 @@
-export const addItem = (title, year, _console) => ({
+export const addItem = (item) => ({
     type: 'ADD_ITEM',
-    title,
-    year,
-    _console
+    item: item
 })
 
 

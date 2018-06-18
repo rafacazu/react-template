@@ -29,7 +29,22 @@ class AddItem extends Component {
     submitForm(e){
         e.preventDefault()
         //const content = this.state;
-        this.props.dispatch(addItem(this.state.title, this.state.year, this.state.console));
+
+        var content = this.state;
+
+        fetch('http://localhost:3004/games',{
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(content)
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            this.props.dispatch(addItem(json));
+        });
     }
 
     render(){
