@@ -10,6 +10,7 @@ class ItemList extends Component {
         this.state = {
             items : []
         }
+        this.removeItem = this.removeItem.bind(this);
     }
 
     componentDidMount(){
@@ -24,6 +25,20 @@ class ItemList extends Component {
         });
     }
 
+    removeItem(event){
+        let id = event.target.dataset.id;
+       fetch('http://localhost:3004/games/'+id,{
+            method: 'DELETE'
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            let newItems = this.state.items.filter( item => item.id != id);
+            this.props.dispatch(loadItems(newItems));
+        })
+    }
+
     static getDerivedStateFromProps(props, state){
         return { items: props.items }
     }
@@ -31,7 +46,7 @@ class ItemList extends Component {
     render(){
         return (
             <div>
-                <List items={this.state.items}/>
+                <List items={this.state.items} onClick={this.removeItem}/>
             </div>
         )
     }

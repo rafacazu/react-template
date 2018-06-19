@@ -10,14 +10,11 @@ export default class List extends Component{
             items: []
         }
     }
-
-    
-
    
 
     renderList(){
         return this.props.items.map((items,index) => (
-            <Item key={index} title={items.title} year={items.year} console={items.console} />
+            <Item key={index} title={items.title} year={items.year} console={items.console} id={items.id} onClick={this.props.onClick} />
         ))
     }
 
