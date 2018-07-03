@@ -39,6 +39,10 @@ class ItemList extends Component {
         })
     }
 
+    editItem(event){
+        console.log('Edit item');
+    }
+
     static getDerivedStateFromProps(props, state){
         return { items: props.items }
     }
@@ -46,7 +50,7 @@ class ItemList extends Component {
     render(){
         return (
             <div>
-                <List items={this.state.items} onClick={this.removeItem}/>
+                <List items={this.state.items} remove={this.removeItem} edit={this.editItem}/>
             </div>
         )
     }

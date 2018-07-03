@@ -3,6 +3,11 @@ export const addItem = (item) => ({
     item: item
 })
 
+export const editItem = (item) => ({
+    type: 'EDIT_ITEM',
+    item: item
+})
+
 
 export const loadItems = (items) => ({
     type: 'LOAD_ITEMS',
