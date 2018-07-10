@@ -26,6 +26,10 @@ class AddItem extends Component {
         this.setState(newState);
     }
 
+    static getDerivedStateFromProps(props, state){
+        return { action: props }
+    }
+
     submitForm(e){
         e.preventDefault()
         //const content = this.state;

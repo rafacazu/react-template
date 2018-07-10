@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import List from '../components/List';
-import {loadItems} from '../actions'
+import {loadItems} from '../actions';
+import {editItem} from '../actions';
 import {connect} from 'react-redux';
 
 
@@ -11,6 +12,7 @@ class ItemList extends Component {
             items : []
         }
         this.removeItem = this.removeItem.bind(this);
+        this.editCurrentItem = this.editCurrentItem.bind(this);
     }
 
     componentDidMount(){
@@ -26,7 +28,8 @@ class ItemList extends Component {
     }
 
     removeItem(event){
-        let id = event.target.dataset.id;
+        let id = event.target.parentNode.dataset.id;
+
        fetch('http://localhost:3004/games/'+id,{
             method: 'DELETE'
         })
@@ -39,8 +42,22 @@ class ItemList extends Component {
         })
     }
 
-    editItem(event){
-        console.log('Edit item');
+    editCurrentItem(event){
+        let id = event.target.parentNode.dataset.id;
+        id = Number(id); 
+        console.log('Edit item '+ id);
+        let newItem = {
+            "title": "new_title",
+            "year": "new_year",
+            "console": "new_console",
+            "id": id
+        }
+
+        this.props.dispatch(editItem(newItem));
+        //http://localhost:3004/games/{id}
+ 
+
+
     }
 
     static getDerivedStateFromProps(props, state){
@@ -50,7 +67,7 @@ class ItemList extends Component {
     render(){
         return (
             <div>
-                <List items={this.state.items} remove={this.removeItem} edit={this.editItem}/>
+                <List items={this.state.items} remove={this.removeItem} edit={this.editCurrentItem}/>
             </div>
         )
     }

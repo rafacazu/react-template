@@ -35,3 +35,8 @@
   color:red;
   cursor: pointer;
 }
+
+.item__edit{
+  color: orange;
+  cursor: pointer;
+}

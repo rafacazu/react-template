@@ -4,7 +4,7 @@ const items = (state = [], action) => {
             return [...state, action.item];
 
         case 'EDIT_ITEM':
-            return [action.item];
+            return [action];
 
         case 'LOAD_ITEMS':  
             return action.items
