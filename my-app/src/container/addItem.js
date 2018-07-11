@@ -12,11 +12,13 @@ class AddItem extends Component {
         this.state = {
             title: "",
             year: "",
-            console: ""
+            console: "",
+            id: undefined
         }
 
         this.submitForm = this.submitForm.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.fillForm = this.fillForm.bind(this);
     }
 
     /*logic to save the new item*/
@@ -26,23 +28,35 @@ class AddItem extends Component {
         this.setState(newState);
     }
 
+    fillForm(item){
+        this.setState(item);
+    }
+
     static getDerivedStateFromProps(props, state){
-        return { action: props }
+        if(props.items[0] && props.items[0].type === "EDIT_ITEM"){
+            return props.items[0].item;
+        }else{
+            return props.items;
+        }
     }
 
     submitForm(e){
         e.preventDefault()
-        //const content = this.state;
 
         var content = this.state;
-
-        fetch('http://localhost:3004/games',{
-            method: 'post',
+        var ajaxSettings = {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(content)
-        })
+        }
+
+        if(content.id !== undefined){
+            ajaxSettings.method = 'PUT'
+        }
+
+        fetch('http://localhost:3004/games',ajaxSettings)
         .then(response => {
             return response.json();
         })

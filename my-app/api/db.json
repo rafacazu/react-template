@@ -11,6 +11,28 @@
       "year": "hhh",
       "console": "hhhh",
       "id": 7
+    },
+    {
+      "title": "llll",
+      "year": "lll",
+      "console": "llll",
+      "action": {
+        "items": [
+          {
+            "title": "fffff",
+            "year": "ffffff",
+            "console": "ffffff",
+            "id": 5
+          },
+          {
+            "title": "hhh",
+            "year": "hhh",
+            "console": "hhhh",
+            "id": 7
+          }
+        ]
+      },
+      "id": 8
     }
   ]
 }

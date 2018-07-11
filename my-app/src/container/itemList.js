@@ -28,7 +28,9 @@ class ItemList extends Component {
     }
 
     removeItem(event){
-        let id = event.target.parentNode.dataset.id;
+        let id = event.target.parentNode.id;
+        let numberId = id.replace('item_',"");
+        numberId = Number(numberId); 
 
        fetch('http://localhost:3004/games/'+id,{
             method: 'DELETE'
@@ -43,15 +45,15 @@ class ItemList extends Component {
     }
 
     editCurrentItem(event){
-        let id = event.target.parentNode.dataset.id;
-        id = Number(id); 
-        console.log('Edit item '+ id);
-        let newItem = {
-            "title": "new_title",
-            "year": "new_year",
-            "console": "new_console",
-            "id": id
-        }
+        let id = event.target.parentNode.id;
+        let numberId = id.replace('item_',"");
+        numberId = Number(numberId); 
+        let el = document.getElementById(id);
+        el.classList.add("display-none");
+
+
+        let selectedItem = this.state.items.filter(item => item.id === numberId);
+        let newItem = selectedItem[0];
 
         this.props.dispatch(editItem(newItem));
         //http://localhost:3004/games/{id}
@@ -61,6 +63,9 @@ class ItemList extends Component {
     }
 
     static getDerivedStateFromProps(props, state){
+        if(props.items[0] && props.items[0].type === "EDIT_ITEM"){
+            return props.items[0].item;
+        }
         return { items: props.items }
     }
 
