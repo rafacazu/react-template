@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from './../components/Form';
 import {addItem} from '../actions';
+import {editItem} from '../actions';
 import {connect} from 'react-redux';
 
 
@@ -33,10 +34,10 @@ class AddItem extends Component {
     }
 
     static getDerivedStateFromProps(props, state){
-        if(props.items[0] && props.items[0].type === "EDIT_ITEM"){
-            return props.items[0].item;
+        if(props.items && props.items.type === "EDIT_ITEM"){
+            return props.items.item;
         }else{
-            return props.items;
+            return null;
         }
     }
 
@@ -44,6 +45,7 @@ class AddItem extends Component {
         e.preventDefault()
 
         var content = this.state;
+        var urlApi = "http://localhost:3004/games";
         var ajaxSettings = {
             method: 'POST',
             headers: {
@@ -54,9 +56,10 @@ class AddItem extends Component {
 
         if(content.id !== undefined){
             ajaxSettings.method = 'PUT'
+            urlApi += '/'+content.id;
         }
 
-        fetch('http://localhost:3004/games',ajaxSettings)
+        fetch(urlApi,ajaxSettings)
         .then(response => {
             return response.json();
         })

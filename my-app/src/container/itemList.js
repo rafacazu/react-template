@@ -38,7 +38,7 @@ class ItemList extends Component {
         .then(response => {
             return response.json();
         })
-        .then(json => {
+        .then(json => {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             let newItems = this.state.items.filter( item => item.id != id);
             this.props.dispatch(loadItems(newItems));
         })
@@ -49,24 +49,30 @@ class ItemList extends Component {
         let numberId = id.replace('item_',"");
         numberId = Number(numberId); 
         let el = document.getElementById(id);
-        el.classList.add("display-none");
+        //el.classList.add("display-none");
 
 
         let selectedItem = this.state.items.filter(item => item.id === numberId);
         let newItem = selectedItem[0];
 
         this.props.dispatch(editItem(newItem));
-        //http://localhost:3004/games/{id}
  
 
 
     }
 
     static getDerivedStateFromProps(props, state){
-        if(props.items[0] && props.items[0].type === "EDIT_ITEM"){
-            return props.items[0].item;
-        }
-        return { items: props.items }
+        if(props.items && props.items.type === "EDIT_ITEM"){
+            return props.items.item;
+        }else{
+            if(state.items.length == 0){
+                return {items : props.items};
+            }else{
+                let unchangedItems = state.items.filter( item => item.id != props.items[0].id);
+                let newItems = [...unchangedItems, props.items[0]];
+                return {items: newItems}
+            }
+        }                                                                                                                                                                                                                                              
     }
 
     render(){

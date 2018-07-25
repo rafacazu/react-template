@@ -1,37 +1,51 @@
 {
   "games": [
     {
-      "title": "fffff",
-      "year": "ffffff",
-      "console": "ffffff",
+      "title": "aa",
+      "year": "aaa",
+      "console": "aaaa",
+      "id": 1
+    },
+    {
+      "title": "bb----",
+      "year": "bbbb",
+      "console": "bbbcccc",
+      "id": 2
+    },
+    {
+      "title": "ccc----",
+      "year": "cccc",
+      "console": "cccc",
+      "id": 3
+    },
+    {
+      "title": "ddd",
+      "year": "ddd",
+      "console": "dddd",
+      "id": 4
+    },
+    {
+      "title": "hh",
+      "year": "hh",
+      "console": "hh",
       "id": 5
     },
     {
       "title": "hhh",
       "year": "hhh",
-      "console": "hhhh",
+      "console": "hhh",
+      "id": 6
+    },
+    {
+      "title": "rrr--",
+      "year": "rrr--",
+      "console": "rrrr--",
       "id": 7
     },
     {
-      "title": "llll",
-      "year": "lll",
-      "console": "llll",
-      "action": {
-        "items": [
-          {
-            "title": "fffff",
-            "year": "ffffff",
-            "console": "ffffff",
-            "id": 5
-          },
-          {
-            "title": "hhh",
-            "year": "hhh",
-            "console": "hhhh",
-            "id": 7
-          }
-        ]
-      },
+      "title": "ff--",
+      "year": "fff---",
+      "console": "fff---",
       "id": 8
     }
   ]
