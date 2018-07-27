@@ -7,7 +7,7 @@
       "id": 1
     },
     {
-      "title": "bb----",
+      "title": "bb",
       "year": "bbbb",
       "console": "bbbcccc",
       "id": 2
@@ -43,9 +43,9 @@
       "id": 7
     },
     {
-      "title": "ff--",
-      "year": "fff---",
-      "console": "fff---",
+      "title": "ff",
+      "year": "fff",
+      "console": "fff",
       "id": 8
     }
   ]

@@ -70,6 +70,9 @@ class ItemList extends Component {
             }else{
                 let unchangedItems = state.items.filter( item => item.id != props.items[0].id);
                 let newItems = [...unchangedItems, props.items[0]];
+                newItems.sort(function(obj1, obj2){
+                    return obj1.id - obj2.id;
+                });
                 return {items: newItems}
             }
         }                                                                                                                                                                                                                                              
