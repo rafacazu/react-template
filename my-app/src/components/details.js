@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-class ItemDetails extends Component {
+class Details extends Component {
+
+
+
+
     render(){
         return(
             <div>
@@ -10,4 +14,4 @@ class ItemDetails extends Component {
     }
 }
 
-export default ItemDetails;
+export default Details;

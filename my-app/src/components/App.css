@@ -41,6 +41,10 @@
   cursor: pointer;
 }
 
+.item__more{
+  cursor:pointer;
+}
+
 .display-none{
   display: none;
 }

@@ -13,6 +13,7 @@ class ItemList extends Component {
         }
         this.removeItem = this.removeItem.bind(this);
         this.editCurrentItem = this.editCurrentItem.bind(this);
+        this.seeMore = this.seeMore.bind(this);
     }
 
     componentDidMount(){
@@ -44,12 +45,16 @@ class ItemList extends Component {
         })
     }
 
+    seeMore(event){
+        let id = event.target.parentNode.id;
+        console.log(id);
+    }
+
     editCurrentItem(event){
         let id = event.target.parentNode.id;
         let numberId = id.replace('item_',"");
         numberId = Number(numberId); 
         let el = document.getElementById(id);
-        //el.classList.add("display-none");
 
 
         let selectedItem = this.state.items.filter(item => item.id === numberId);
@@ -81,7 +86,7 @@ class ItemList extends Component {
     render(){
         return (
             <div>
-                <List items={this.state.items} remove={this.removeItem} edit={this.editCurrentItem}/>
+                <List items={this.state.items} remove={this.removeItem} edit={this.editCurrentItem} more={this.seeMore}/>
             </div>
         )
     }

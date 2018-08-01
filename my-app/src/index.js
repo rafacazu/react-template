@@ -7,7 +7,7 @@ import rootReducer from './reducers';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import App from './components/App';
-import ItemDetails from './components/ItemDetails';
+import ItemDetails from './container/itemDetails';
 
 const store = createStore(rootReducer);
 
@@ -16,7 +16,7 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
             <Route path="/" component={App} />
-            <Route path="details" component={ItemDetails} />
+            <Route path="/details" component={ItemDetails} />
             </div>
         </BrowserRouter>
     </Provider>,
