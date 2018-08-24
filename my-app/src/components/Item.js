@@ -11,7 +11,7 @@ export class Item extends React.Component{
     render(){
         return(
             <li>
-                <div id={"item_" + this.props.id} key={this.props.id} className="item">{this.props.title} - {this.props.year} - {this.props.console} <a className="item__remove" onClick={this.props.remove}>remove</a> <a  className="item__edit" onClick={this.props.edit}>edit</a><a className="item__more" onClick={this.props.more}>view more</a> <Link to={`/details/${this.props.id}`}>view more</Link> </div>
+                <div id={"item_" + this.props.id} key={this.props.id} className="item">{this.props.title} - {this.props.year} - {this.props.console} <a className="item__remove" onClick={this.props.remove}>remove</a> <a  className="item__edit" onClick={this.props.edit}>edit</a> <Link to={`/details/${this.props.id}`}>view more</Link> </div>
             </li>
         )
     }

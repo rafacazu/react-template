@@ -1,17 +1,19 @@
 const items = (state = [], action) => {
     switch (action.type){
         case 'ADD_ITEM':
-            return [...state, action.item];
+            return action;
 
         case 'EDIT_ITEM':
             return action;
 
         case 'LOAD_ITEMS':  
             return action.items
+        
+        case 'LOAD_DETAILS':
+            return action.item;
             
         default:
             return state
-        
     }
     
 }

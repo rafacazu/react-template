@@ -29,9 +29,9 @@ class ItemList extends Component {
     }
 
     removeItem(event){
-        let id = event.target.parentNode.id;
-        let numberId = id.replace('item_',"");
-        numberId = Number(numberId); 
+        let idAttribute = event.target.parentNode.id;
+        let id = idAttribute.replace('item_',"");
+        id = Number(id); 
 
        fetch('http://localhost:3004/games/'+id,{
             method: 'DELETE'
@@ -51,23 +51,36 @@ class ItemList extends Component {
     }
 
     editCurrentItem(event){
-        let id = event.target.parentNode.id;
-        let numberId = id.replace('item_',"");
-        numberId = Number(numberId); 
-        let el = document.getElementById(id);
+        let idAttribute = event.target.parentNode.id;
+        let id = idAttribute.replace('item_',"");
+        id = Number(id); 
+        let el = document.getElementById(idAttribute);
 
 
-        let selectedItem = this.state.items.filter(item => item.id === numberId);
-        let newItem = selectedItem[0];
+        let selectedItem = this.state.items.filter(item => item.id === id);
+        selectedItem = selectedItem[0];
 
-        this.props.dispatch(editItem(newItem));
- 
-
-
+        this.props.dispatch(editItem(selectedItem));
     }
 
     static getDerivedStateFromProps(props, state){
-        if(props.items && props.items.type === "EDIT_ITEM"){
+
+      if(props.items && props.items.type === "EDIT_ITEM"){
+        return {items : state.items};
+      }
+
+      if(props.items && props.items.type === "ADD_ITEM"){
+        let nonEditedItems = state.items.filter(item => item.id != props.items.item.id);
+        let result = [...nonEditedItems, props.items.item];
+        return {items : result};
+      }
+      
+      return {items : props.items};
+      
+
+      
+
+        /*if(props.items && props.items.type === "EDIT_ITEM"){
             return props.items.item;
         }else{
             if(state.items.length == 0){
@@ -80,7 +93,7 @@ class ItemList extends Component {
                 });
                 return {items: newItems}
             }
-        }                                                                                                                                                                                                                                              
+        }*/
     }
 
     render(){

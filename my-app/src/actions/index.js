@@ -13,3 +13,8 @@ export const loadItems = (items) => ({
     type: 'LOAD_ITEMS',
     items
 })
+
+export const loadDetails = (item) => ({
+  type: 'LOAD_DETAILS',
+  item : item
+})
