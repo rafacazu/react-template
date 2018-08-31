@@ -10,7 +10,7 @@ const items = (state = [], action) => {
             return action.items
         
         case 'LOAD_DETAILS':
-            return action.item;
+            return action;
             
         default:
             return state

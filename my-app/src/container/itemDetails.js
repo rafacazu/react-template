@@ -14,33 +14,31 @@ class ItemDetails extends Component {
     }
 
     componentDidMount(){
+      let id = this.props.location.pathname.replace('/items/','');
+      this.fetchItemData(id);
+    }
 
-      var id = window.location.pathname;
-      id = id.replace('/details/','');
-      id = Number(id);
-      console.log(this.state.title);
+    componentWillReceiveProps(nextProps){
+      let id = nextProps.location.pathname.replace('/items/','');
+      this.fetchItemData(id);
+    }
 
+    fetchItemData(id){
       fetch('http://localhost:3004/games/'+id)
       .then(response => {
           return response.json();
       })
       .then(json => {
-          this.setState(json);
-          //this.props.dispatch(loadDetails(json));
+          this.setState(json)
       });
     }
-
-    /*static getDerivedStateFromProps(props, state){
-      console.log(props, state)
-      return props;
-    }*/
 
     render(){
         return(
             <div>
-                <h1>Item: {this.state.title}</h1>
-                <p>Year : {this.state.year}</p>
-                <p>Console: {this.state.console}</p>
+                <h1>{this.state.title}</h1>
+                <h3>{this.state.console}</h3>
+                <h3>{this.state.year}</h3>
             </div>
         )
     }

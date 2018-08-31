@@ -9,3 +9,11 @@ Template to start a React application;
 - Handling errors;
 
 
+structure
+Home page
+items page
+Add items page
+edit/remove
+
+
+

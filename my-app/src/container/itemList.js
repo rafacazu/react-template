@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import List from '../components/List';
 import {loadItems} from '../actions';
 import {editItem} from '../actions';
+import {loadDetails} from '../actions'; 
 import {connect} from 'react-redux';
+import AddItem from './addItem';
+import { Link } from 'react-router-dom';
 
 
 class ItemList extends Component {
@@ -11,14 +14,14 @@ class ItemList extends Component {
         this.state = {
             items : []
         }
-        this.removeItem = this.removeItem.bind(this);
-        this.editCurrentItem = this.editCurrentItem.bind(this);
-        this.seeMore = this.seeMore.bind(this);
+        //this.removeItem = this.removeItem.bind(this);
+        //this.editCurrentItem = this.editCurrentItem.bind(this);
+        this.showDetails = this.showDetails.bind(this);
     }
 
     componentDidMount(){
         
-        fetch('http://localhost:3004/games')
+        fetch('http://localhost:3004/games')  
         .then(response => {
             return response.json();
         })
@@ -45,9 +48,17 @@ class ItemList extends Component {
         })
     }
 
-    seeMore(event){
-        let id = event.target.parentNode.id;
+    showDetails(event){
+       let id = event.target.id;
         console.log(id);
+  
+        fetch('http://localhost:3004/games/'+id)
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            this.props.dispatch(loadDetails(json));
+        });
     }
 
     editCurrentItem(event){
@@ -74,6 +85,10 @@ class ItemList extends Component {
         let result = [...nonEditedItems, props.items.item];
         return {items : result};
       }
+
+      if(props.items && props.items.type === "LOAD_DETAILS"){
+        return {items : state.items};
+      }
       
       return {items : props.items};
       
@@ -99,7 +114,8 @@ class ItemList extends Component {
     render(){
         return (
             <div>
-                <List items={this.state.items} remove={this.removeItem} edit={this.editCurrentItem} more={this.seeMore}/>
+                <List items={this.state.items} onClick={this.showDetails}/>
+                <Link to='/add-item'>Add new item +</Link>
             </div>
         )
     }
