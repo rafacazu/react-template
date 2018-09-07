@@ -31,22 +31,6 @@ class ItemList extends Component {
         });
     }
 
-    removeItem(event){
-        let idAttribute = event.target.parentNode.id;
-        let id = idAttribute.replace('item_',"");
-        id = Number(id); 
-
-       fetch('http://localhost:3004/games/'+id,{
-            method: 'DELETE'
-        })
-        .then(response => {
-            return response.json();
-        })
-        .then(json => {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-            let newItems = this.state.items.filter( item => item.id != id);
-            this.props.dispatch(loadItems(newItems));
-        })
-    }
 
     showDetails(event){
        let id = event.target.id;
@@ -61,18 +45,7 @@ class ItemList extends Component {
         });
     }
 
-    editCurrentItem(event){
-        let idAttribute = event.target.parentNode.id;
-        let id = idAttribute.replace('item_',"");
-        id = Number(id); 
-        let el = document.getElementById(idAttribute);
-
-
-        let selectedItem = this.state.items.filter(item => item.id === id);
-        selectedItem = selectedItem[0];
-
-        this.props.dispatch(editItem(selectedItem));
-    }
+    
 
     static getDerivedStateFromProps(props, state){
 

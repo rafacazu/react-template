@@ -10,15 +10,18 @@ import Home from './Home';
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className="App">
+        <div>
           <Header />
-          <Route path='/' component={Home}></Route>
-          <Route path='/items' component={ItemList}></Route>
-          <Route path='/items' component={ItemDetails}></Route>
-          <Route path='/add-item' component={AddItem}></Route>
+          <div className="App container">
+            <div className="jumbotron">
+              <Route path='/' exact component={Home}></Route>
+              <Route path='/items' exact component={ItemList}></Route>
+              <Route path='/items/:id' exact component={ItemDetails}></Route>
+              <Route path='/items/edit/:id' component={AddItem}></Route>
+              <Route path='/add-item' component={AddItem}></Route>
+            </div>
+          </div>
         </div>
-      </Router>  
     );
   }
 }

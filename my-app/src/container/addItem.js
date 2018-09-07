@@ -22,6 +22,21 @@ class AddItem extends Component {
         this.fillForm = this.fillForm.bind(this);
     }
 
+    componentDidMount(){
+      if(!this.state.id){
+        let id = this.props.match.params.id;
+        if(id){
+          fetch('http://localhost:3004/games/'+id)
+          .then(response => {
+              return response.json();
+          })
+          .then(json => {
+              this.setState(json)
+          });
+        }
+      }
+    }
+
     /*logic to save the new item*/
     handleInputChange(event){
         const newState = {};
@@ -65,6 +80,7 @@ class AddItem extends Component {
         })
         .then(json => {
             this.props.dispatch(addItem(json));
+            this.props.history.push(`/items/`+json.id)
         });
     }
 
