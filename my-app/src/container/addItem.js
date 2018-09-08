@@ -20,6 +20,8 @@ class AddItem extends Component {
         this.submitForm = this.submitForm.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.fillForm = this.fillForm.bind(this);
+        this.goBack = this.goBack.bind(this);
+
     }
 
     componentDidMount(){
@@ -56,6 +58,10 @@ class AddItem extends Component {
         }
     }
 
+    goBack(){
+        this.props.history.goBack();
+    }
+
     submitForm(e){
         e.preventDefault()
 
@@ -86,7 +92,10 @@ class AddItem extends Component {
 
     render(){
         return(
-            <Form onChange={this.handleInputChange} onClick={this.submitForm} value={this.state}/>
+            <div>
+                <a onClick={this.goBack} className="btn btn-link"> &#171; Back</a>
+                <Form onChange={this.handleInputChange} onClick={this.submitForm} value={this.state}/>
+            </div>
         )
     }
     

@@ -62,12 +62,12 @@ class ItemDetails extends Component {
     render(){
         return(
             <div>
-                <Link to="/items"> &#171; Back</Link>
+                <Link to="/items" className="btn btn-link"> &#171; Back</Link>
+                <a className="item__remove btn btn-sm float-right btn-danger" onClick={this.deleteItem}>Delete</a>
+                <Link to={'/items/edit/'+this.state.id} className="item__edit btn btn-sm btn-warning float-right" onClick={this.editCurrentItem}>Edit item</Link>
                 <h1>{this.state.title}</h1>
                 <h3>{this.state.console}</h3>
                 <h3>{this.state.year}</h3>
-                <Link to={'/items/edit/'+this.state.id} className="item__edit" onClick={this.editCurrentItem}>Edit item</Link> <br />
-                <a className="item__remove" onClick={this.deleteItem}>Delete</a>
             </div>
         )
     }

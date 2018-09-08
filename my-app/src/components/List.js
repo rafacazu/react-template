@@ -24,9 +24,9 @@ export default class List extends Component{
         return(
             <div>
                 {this.props.items.length > 0 &&
-                    <ul>
+                    <div className="list-group">
                         {this.renderList()}
-                    </ul>
+                    </div>
                 }
             </div>
         )

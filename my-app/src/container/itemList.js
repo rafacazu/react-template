@@ -87,8 +87,10 @@ class ItemList extends Component {
     render(){
         return (
             <div>
-                <List items={this.state.items} onClick={this.showDetails}/>
-                <Link to='/add-item'>Add new item +</Link>
+                <div class="clearfix">
+                    <Link to='/add-item' className="btn btn-sm btn-primary float-right">Add new item +</Link>
+                </div>
+                <List className="" items={this.state.items} onClick={this.showDetails}/>
             </div>
         )
     }

@@ -27,19 +27,7 @@
   to { transform: rotate(360deg); }
 }*/
 
-.item{
 
-}
-
-.item__remove{
-  color:red;
-  cursor: pointer;
-}
-
-.item__edit{
-  color: orange;
-  cursor: pointer;
-}
 
 .item__more{
   cursor:pointer;

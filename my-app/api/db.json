@@ -1,18 +1,6 @@
 {
   "games": [
     {
-      "title": "ff",
-      "year": "fff",
-      "console": "fff",
-      "id": 8
-    },
-    {
-      "title": "yyy",
-      "year": "yyy",
-      "console": "yyy",
-      "id": 13
-    },
-    {
       "title": "nnn",
       "year": "nnn",
       "console": "nnn",
@@ -49,12 +37,6 @@
       "id": 19
     },
     {
-      "title": "tttttttt----",
-      "year": "hhh",
-      "console": "hhh",
-      "id": 20
-    },
-    {
       "title": "Yyyy$",
       "year": "eee",
       "console": "fff",
@@ -73,16 +55,10 @@
       "id": 25
     },
     {
-      "title": "opaaa",
-      "year": "op",
-      "console": "opa",
+      "title": "elaia++++",
+      "year": "444",
+      "console": "4444",
       "id": 26
-    },
-    {
-      "title": "lalal",
-      "year": "lala",
-      "console": "lala",
-      "id": 27
     }
   ]
 }
