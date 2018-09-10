@@ -1,6 +1,4 @@
-Template to start a React application;
-
-This application displays a list based on an API. The use can add, edit or remove items from the list.
+This application is an application in React and Redux, that displays a list based on an API. The use can add, edit or remove items from the list.
 
 - Single Page Application; OK
 - Simple API; OK
