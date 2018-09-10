@@ -40,8 +40,10 @@ class AddItem extends Component {
       }
     }
 
-    displayMessage(message){
-      toastr.success(message)
+    displayMessage(type, message){
+      if (type === 'success') toastr.success(message)
+        
+      if (type === 'error') toastr.error(message)
     }
 
     /*logic to save the new item*/
@@ -71,6 +73,33 @@ class AddItem extends Component {
         e.preventDefault()
 
         var content = this.state;
+        var validation = {
+          title : false,
+          console : false,
+          year : false
+        }
+        
+        // handle validation
+        if(content.title == ''){
+          validation.title = true;
+        }
+
+        if(content.console == ''){
+          validation.console = true;
+        }
+
+        if(content.year == '' || isNaN(parseFloat(content.year)) || !isFinite(content.year)){
+          validation.year = true;
+        }
+
+        for (let i in validation) {  
+          if( validation[i] ){
+            message = 'Insert a valid value for the ' + i + ' field';
+            this.displayMessage('error',message);
+            return;
+          }
+        }
+
         var urlApi = "http://localhost:3004/games";
         var message = '';
         var ajaxSettings = {
