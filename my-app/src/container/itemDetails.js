@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {editItem} from '../actions';
 import AddItem from '../container/addItem';
-import {BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import toastr from 'toastr';
 
 class ItemDetails extends Component {
     constructor(props){
@@ -33,8 +34,9 @@ class ItemDetails extends Component {
             return response.json();
         })
         .then(json => {
-            console.log('Item has been deleted.');
-            this.props.history.push(`/items`)
+            this.props.history.push(`/items`);
+            this.displayMessage('The item has been deleted.')
+
         })
     }
 
@@ -57,6 +59,10 @@ class ItemDetails extends Component {
       .then(json => {
           this.setState(json)
       });
+    }
+
+    displayMessage(message){
+      toastr.success(message);
     }
 
     render(){

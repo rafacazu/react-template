@@ -3,6 +3,7 @@ import Form from './../components/Form';
 import {addItem} from '../actions';
 import {editItem} from '../actions';
 import {connect} from 'react-redux';
+import toastr from 'toastr';
 
 
 
@@ -39,6 +40,10 @@ class AddItem extends Component {
       }
     }
 
+    displayMessage(message){
+      toastr.success(message)
+    }
+
     /*logic to save the new item*/
     handleInputChange(event){
         const newState = {};
@@ -67,6 +72,7 @@ class AddItem extends Component {
 
         var content = this.state;
         var urlApi = "http://localhost:3004/games";
+        var message = '';
         var ajaxSettings = {
             method: 'POST',
             headers: {
@@ -75,9 +81,11 @@ class AddItem extends Component {
             body: JSON.stringify(content)
         }
 
+        message = 'Item has been added.';
         if(content.id !== undefined){
             ajaxSettings.method = 'PUT'
             urlApi += '/'+content.id;
+            message = 'Item has been updated.'
         }
 
         fetch(urlApi,ajaxSettings)
@@ -86,7 +94,8 @@ class AddItem extends Component {
         })
         .then(json => {
             this.props.dispatch(addItem(json));
-            this.props.history.push(`/items/`+json.id)
+            this.props.history.push(`/items/`+json.id);
+            this.displayMessage(message)
         });
     }
 
