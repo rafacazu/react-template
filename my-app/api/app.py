@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Response
+import json
 
 app = Flask(__name__)
 
@@ -68,10 +69,23 @@ def get_game_by_id(id):
 def add_game():
   request_data = request.get_json()
   if(validGameObject(request_data)):
-    games.insert(0, request_data)
-    return "True"
+    new_game = {
+      'title': request_data['title'],
+      'console': request_data['console'],
+      'year': request_data['year'],
+      'id': request_data['id']
+    }
+    games.insert(0, new_game)
+    response = Response("",201,mimetype='application/json')
+    response.headers['Location'] = "/games/"+str(new_game['id'])
+    return response
   else:
-    return "False"
+    invalidGameObjectErrorMessage = {
+      "error": "invalid gme passed in request",
+      "helpStr": "expected object like {'title': 'title'...}"
+    }
+    response = Response(json.dumps(invalidGameObjectErrorMessage), status=404, mimetype='application/json');
+    return response
 
   return jsonify()
 
