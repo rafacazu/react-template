@@ -14,8 +14,6 @@ class ItemList extends Component {
         this.state = {
             items : []
         }
-        //this.removeItem = this.removeItem.bind(this);
-        //this.editCurrentItem = this.editCurrentItem.bind(this);
         this.showDetails = this.showDetails.bind(this);
     }
 
@@ -90,7 +88,7 @@ class ItemList extends Component {
                 <div className="clearfix">
                     <Link to='/add-item' className="btn btn-sm btn-primary float-right">Add new item +</Link>
                 </div>
-                <List className="" items={this.state.items} onClick={this.showDetails}/>
+                <List items={this.state.items} onClick={this.showDetails}/>
             </div>
         )
     }
