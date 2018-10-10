@@ -9,13 +9,13 @@ games = [
       "title": "First One",
       "year": "1999",
       "console": "PS4",
-      "id": 0
+      "id": 1
     },
     {
       "title": "Second One",
       "year": "2000",
       "console": "XBOX",
-      "id": 0
+      "id": 2
     }
 ]
 
@@ -88,5 +88,48 @@ def add_game():
     return response
 
   return jsonify()
+
+
+@app.route('/games/<int:id>', methods=['PUT'])
+def replace_game(id):
+  request_data = request.get_json()
+  new_game = {
+    "title": request_data['title'],
+    "console": request_data['console'],
+    "year": request_data['year'],
+    "id": id
+  }
+  i = 0;
+  for game in games:
+    currentId = game['id']
+    if currentId == id:
+      games[i] = new_game
+    i += 1
+  response = Response("", status=204)
+
+  return response
+
+@app.route('/games/<int:id>', methods=['PATCH'])
+def update_game(id):
+  request_data = request.get_json()
+  updated_game = {}
+  if("title" in request_data):
+    updated_game["title"] = request_data["title"]
+  if("console" in request_data):
+     updated_game["console"] = request_data["console"]
+  if("year" in request_data):
+    updated_game["year"] = request_data["year"]
+  
+  for game in games:
+    if game['id'] == id:
+      game.update(updated_game)
+  response = Response("", status=204)
+  response.headers['Location'] = "/books/" + str(id)
+  return response
+  
+  
+
+
+
 
 app.run(port=5000)
