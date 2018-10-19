@@ -1,37 +1,8 @@
 from flask import Flask, jsonify, request, Response
 import json
+from GameModel import *
+from settings import *
 
-app = Flask(__name__)
-
-
-games = [
-    {
-      "title": "First One",
-      "year": "1999",
-      "console": "PS4",
-      "id": 1
-    },
-    {
-      "title": "Second One",
-      "year": "2000",
-      "console": "XBOX",
-      "id": 2
-    }
-]
-
-#mock tests
-valid_object = {
-    "title": "Valid One",
-    "year": "2000",
-    "console": "XBOX",
-    "id": 0
-}
-
-missing_title = {
-    "year": "2000",
-    "console": "XBOX",
-    "id": 0
-}
 
 #validation
 def validGameObject(gameObject):
@@ -47,20 +18,12 @@ def validGameObject(gameObject):
 #GET /games
 @app.route('/games')
 def get_games():
-  return jsonify({'games': games})
+  return jsonify({'games': Game.get_all_games()})
 
 #GET /games/id
 @app.route('/games/<int:id>')
 def get_game_by_id(id):
-  return_value = {}
-  for game in games:
-    if game['id'] == id:
-      return_value = {
-        "title": game['title'],
-        "year": game['year'],
-        "console": game['console'],
-        "id": id
-      }
+  return_value = Game.get_game(id)
   return jsonify(return_value)
 
 #POST /games
@@ -69,13 +32,7 @@ def get_game_by_id(id):
 def add_game():
   request_data = request.get_json()
   if(validGameObject(request_data)):
-    new_game = {
-      'title': request_data['title'],
-      'console': request_data['console'],
-      'year': request_data['year'],
-      'id': request_data['id']
-    }
-    games.insert(0, new_game)
+    Game.add_game(request_data['title'], request_data['year'], request_data['console'])
     response = Response("",201,mimetype='application/json')
     response.headers['Location'] = "/games/"+str(new_game['id'])
     return response
@@ -93,6 +50,7 @@ def add_game():
 @app.route('/games/<int:id>', methods=['PUT'])
 def replace_game(id):
   request_data = request.get_json()
+  Game.replace_game(request_data['title'], request_data['year'], request_data['console'] )
   new_game = {
     "title": request_data['title'],
     "console": request_data['console'],
@@ -111,25 +69,31 @@ def replace_game(id):
 
 @app.route('/games/<int:id>', methods=['PATCH'])
 def update_game(id):
-  request_data = request.get_json()
+  request_data = request.get_json() 
   updated_game = {}
   if("title" in request_data):
-    updated_game["title"] = request_data["title"]
+    Game.update_title(id, request_data["title"])
   if("console" in request_data):
-     updated_game["console"] = request_data["console"]
+    Game.update_title(id, request_data["console"])
   if("year" in request_data):
     updated_game["year"] = request_data["year"]
-  
-  for game in games:
-    if game['id'] == id:
-      game.update(updated_game)
+
   response = Response("", status=204)
   response.headers['Location'] = "/books/" + str(id)
+  
   return response
-  
-  
 
 
+@app.route('/games/<int:id>', methods=['DELETE'])
+def delete_game(id):
+  if(Game.delete_game(id)):
+    response = Response("", status=204)
+    return response
 
+  invalidGameObjectErrorMessage = {
+      "error": "invalid game ID passed in request"
+    }
+  response = Response(invalidGameObjectErrorMessage, status=404, mimetype='application/json')
+  return response
 
-app.run(port=5000)
+app.run(port=5000)  
