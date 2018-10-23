@@ -8,8 +8,7 @@ from settings import *
 def validGameObject(gameObject):
   if ("title" in gameObject 
         and "year" in gameObject 
-          and "console" in gameObject
-            and "id" in gameObject):
+          and "console" in gameObject):
       return True
   else:
       return False
@@ -34,7 +33,7 @@ def add_game():
   if(validGameObject(request_data)):
     Game.add_game(request_data['title'], request_data['year'], request_data['console'])
     response = Response("",201,mimetype='application/json')
-    response.headers['Location'] = "/games/"+str(new_game['id'])
+    #response.headers['Location'] = "/games/"+str(request_data[])
     return response
   else:
     invalidGameObjectErrorMessage = {
