@@ -3,6 +3,16 @@ import json
 from GameModel import *
 from settings import *
 
+import jwt, datetime
+
+app.config['SECRET_KEY'] = 'meow'
+
+@app.route('/login')
+def get_token():
+  expiration_date = datetime.datetime.utcnow() + datetime.timedelta(seconds=100)
+  token = jwt.encode({'exp': expiration_date}, app.config['SECRET_KEY'], algorithm = 'HS256')
+  return token;
+
 
 #validation
 def validGameObject(gameObject):
@@ -17,6 +27,11 @@ def validGameObject(gameObject):
 #GET /games
 @app.route('/games')
 def get_games():
+  token = request.args.get('token')
+  try:
+    jwt.decode(token, app.config['SECRET_KEY'])
+  except:
+    return jsonify({'error':'Need a valid token to view this page'}), 401
   return jsonify({'games': Game.get_all_games()})
 
 #GET /games/id
